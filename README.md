@@ -1,4 +1,4 @@
-##Dependências
+#Dependências
 - dotenv: Biblioteca para carregar variáveis de ambiente.
 - express: Framework para criação de aplicações web.
 - mongoose: Biblioteca para modelagem de dados no MongoDB.
