@@ -1,51 +1,51 @@
-Dependências
+## Dependências
 - dotenv: Biblioteca para carregar variáveis de ambiente.
 - express: Framework para criação de aplicações web.
 - mongoose: Biblioteca para modelagem de dados no MongoDB.
 - bcrypt: Biblioteca para hashing de senhas.
 - jsonwebtoken: Biblioteca para criação e verificação de tokens JWT.
 
-Variáveis de Ambiente
+## Variáveis de Ambiente
 - SECRET: Chave secreta usada para assinar tokens JWT.
 - DB_USER: Nome de usuário do banco de dados.
 - DB_PASS: Senha do banco de dados.
 
 
-Configuração Inicial
+## Configuração Inicial
 - require("dotenv").config(): Carrega variáveis de ambiente do arquivo .env para process.env.
 - express: Inicializa a aplicação Express.
 - app.use(express.json()): Configura o Express para parsear respostas JSON.
 
 
-Modelos
+## Modelos
 - User: Modelo de usuário importado do arquivo ./models/User.
 
 Funções e Roteamento
-Rota Aberta
+## Rota Aberta
 - app.get("/"): Rota aberta que retorna uma mensagem de confirmação de conexão da API.
 - Rota Privada
 - app.get("/user/", checkToken, async (req, res)): Rota privada que retorna informações de um usuário específico, excluindo a senha.
 Middleware de Verificação de Token
 - checkToken(req, res, next): Middleware que verifica a presença e a validade de um token JWT no cabeçalho de autorização.
 
-Registro de Usuário
+## Registro de Usuário
 - app.post("/auth/register", async (req, res)): Rota para registrar um novo usuário. Valida os campos obrigatórios, verifica a existência do usuário e cria um novo usuário no banco de dados.
 
-Login de Usuário
+## Login de Usuário
 - app.post("/auth/login", async (req, res)): Rota para autenticação de usuário. Valida os campos email e password, verifica as credenciais e retorna um token JWT se a autenticação for bem-sucedida.
 
-Conexão com o Banco de Dados
+## Conexão com o Banco de Dados
 - mongoose.connect(): Conecta ao banco de dados MongoDB usando as credenciais fornecidas nas variáveis de ambiente.
 - app.listen(3000): Inicia o servidor na porta 3000 após a conexão bem-sucedida com o banco de dados.
 
-Objetivo de Cada Função
+## Objetivo de Cada Função
 - checkToken: Middleware que extrai o token do cabeçalho de autorização, verifica sua validade e permite o acesso às rotas privadas se o token for válido.
 - app.get("/"): Retorna uma mensagem de confirmação para verificar se a API está conectada corretamente.
 - app.get("/user/"): Retorna os dados de um usuário específico, excluindo informações sensíveis como a senha.
 - app.post("/auth/register"): Registra um novo usuário após validação dos dados fornecidos.
 - app.post("/auth/login"): Autentica um usuário e retorna um token JWT se as credenciais estiverem corretas.
 
-Mensagens de Resposta
+## Mensagens de Resposta
 -"API connected": Mensagem de sucesso para a rota raiz.
 - "Usuário não encontrado!": Mensagem de erro para usuário inexistente.
 - "Acesso negado!": Mensagem de erro para acesso não autorizado.
@@ -57,3 +57,21 @@ Mensagens de Resposta
 - "Usuário não encontrado!": Mensagem de erro para email não registrado.
 - "Senha inválida": Mensagem de erro para senha incorreta.
 - "Autenticação realizada com sucesso!": Mensagem de sucesso para login bem-sucedido.
+
+## Definição do Esquema
+### const User = mongoose.model('User', {...}): Define o modelo User com os seguintes campos:
+
+- name: Tipo String. Nome do usuário.
+- register: Tipo String. Registro do usuário, pode ser CPF ou CNPJ.
+- email: Tipo String. Email do usuário.
+- password: Tipo String. Senha do usuário.
+- cep: Tipo Number. Código de Endereçamento Postal do usuário.
+- state: Tipo String. Estado onde o usuário reside.
+- city: Tipo String. Cidade onde o usuário reside.
+- neighborhood: Tipo String. Bairro onde o usuário reside.
+- street: Tipo String. Logradouro onde o usuário reside.
+- number: Tipo Number. Número da residência do usuário.
+- complement: Tipo String. Complemento do endereço do usuário.
+  
+### Exportação
+- module.exports = User: Exporta o modelo User para ser utilizado em outras partes da aplicação.
