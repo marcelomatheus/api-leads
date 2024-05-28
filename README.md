@@ -1,3 +1,7 @@
+#Como executar
+- O ambiente de execução deve possuir node e executar o comando "node src/app.js" no terminal a partir do diretório raiz da aplicação e esperar a mensagem "Database connect!"
+- O banco de dados MongoDB é gerenciad através do Atlas
+
 ## Dependências
 - dotenv: Biblioteca para carregar variáveis de ambiente.
 - express: Framework para criação de aplicações web.
